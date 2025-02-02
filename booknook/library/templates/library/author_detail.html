@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row row-cols-2">
+            <div class="book-detail-cover-img d-flex justify-content-center">
+                <img src="{{author.photo.url}}" alt="{{author.first_name}} {{author.last_name}} photo" class="img-thumbnail resized-img">
+            </div>
+            <div>
+                <h1>{{author.first_name}} {{author.last_name}}</h1>
+                    {% if author.bio %}
+                    <p class="py-3">
+                        {{author.bio}}
+                    </p>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="container px-4 px-lg-5 mt-5">      
+    <h5>Books by {{author.first_name}} {{author.last_name}}:</h5>
+        <div class="d-flex books-by-author p-3 rounded">
+        {% for book in authors_books %}
+            <div class="card author-book mx-3" >
+                <img src="{{book.cover_image.url}}" class="card-img-top" alt="{{book.title}}">
+                <div class="card-body">
+                    <p class="card-text"><a href="{{book.get_absolute_url}}" class="author-book-link">{{book.title}}</a></p>
+                </div>
+            </div>
+        {%endfor%}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
