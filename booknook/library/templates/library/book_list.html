@@ -13,8 +13,8 @@
         <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
             {% for book in books %}
             <div class="col mb-5">
-                <div class="card h-100 rounded-0">
-                    <img src="{{book.cover_image.url}}" class="card-img-top rounded-0" alt="{{book.title}} book cover">
+                <div class="card h-100 rounded-0 book-card">
+                    <img src="{{book.cover_image.url}}" class="card-img-top mt-3 rounded-0" alt="{{book.title}} book cover">
                     <div class="card-body">
                         <h5 class="card-title">{{book.title}}</h5>
                         <p class="card-text">{{book.author}}</p>

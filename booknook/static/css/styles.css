@@ -4,16 +4,16 @@
     padding: 0 !important;
 }
 
-.card-img-top {
-    width: 100%;
-    height: 18vw;
+.author-card .card-img-top {
+    height: 15rem;
     object-fit: cover;
 }
 
-.test {
-    font-size: 5rem;
-    color: red;
+.book-card .card-img-top {
+    height: 18.5rem;
+    object-fit: contain;
 }
+
 
 .carousel-item {
     height: 500px;

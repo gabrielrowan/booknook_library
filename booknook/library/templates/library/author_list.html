@@ -8,7 +8,7 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
             {% for author in authors %}
             <div class="col mb-5">
-                <div class="card" style="width: 18rem;">
+                <div class="card author-card">
                     <img src="{{author.photo.url}}" class="card-img-top"
                         alt="{{author.first_name}} {{author.last_name}} photo">
                     <div class="card-body text-center">
