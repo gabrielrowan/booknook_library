@@ -2,15 +2,30 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Book, Author, Genre, Series, SubGenre
 from django.utils import timezone
+from .forms import BookTitleFilterForm
+from django.db.models import Q
 
 class BookListView(ListView):
     model = Book
     template_name = 'books.html'
-    context_object_name='books'
+    context_object_name='books'  
+
+    def get_queryset(self):
+        books = Book.objects.all()
+        search_query = self.request.GET.get('searchQuery')
+        if search_query:
+            books = books.filter(
+            Q(title__icontains=search_query) | 
+            Q(author__first_name__icontains=search_query) | 
+            Q(author__last_name__icontains=search_query)
+        )
+        return books
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['subgenres'] = SubGenre.objects.all()
+
+        context['form'] = BookTitleFilterForm()
         return context
 
 class AuthorListView(ListView):
