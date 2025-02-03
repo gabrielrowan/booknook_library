@@ -14,6 +14,16 @@
     object-fit: contain;
 }
 
+.book-genre-button {
+    background-color: #2F888E !important;
+    border: none;
+}
+
+.book-subgenre-button {
+    background-color: #557996 !important;
+    border: none;
+}
+
 
 .carousel-item {
     height: 500px;

@@ -1,17 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container px-4 px-lg-5 mt-5 text-center">
-    {% for subgenre in subgenres %}
-    <button type="button" class="btn rounded-pill text-white"
-        style="background-color: {% cycle '#398d7e' '#2f888e' '#3e8197' '#557996' '#68718e' '#746a81' %}">
-        {{ subgenre.name }}
-    </button>
-    {% endfor %}
-</div>
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
-            {% for book in books %}
+            {% for book in books|dictsort:"title" %}
             <div class="col mb-5">
                 <div class="card h-100 rounded-0 book-card">
                     <img src="{{book.cover_image.url}}" class="card-img-top mt-3 rounded-0" alt="{{book.title}} book cover">
@@ -20,7 +12,7 @@
                             <h5 class="card-title">{{book.title}}</h5>
                             <p class="card-text">{{book.author}}</p>
                         </div>
-                        <a href="{{ book.get_absolute_url }}" class="btn btn-secondary rounded-0 border">About</a>
+                        <a href="{{ book.get_absolute_url }}" class="btn btn-secondary rounded border">About</a>
                     </div>
                 </div>
             </div>

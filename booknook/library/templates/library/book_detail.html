@@ -12,12 +12,25 @@
                 {% endif %}
                 <h1>{{book.title}}</h1>
                 <h4>{{book.author}}</h4>
-                    {% if book.description %}
-                    <p class="py-3">
-                        {{book.description}}
-                    </p>
+                <div class="genres-subgenres my-3">
+                    {%if book_genres %}
+                        {% for book_genre in book_genres %}
+                            <button type="button" class="btn rounded-pill book-genre-button text-white">
+                                {{book_genre}}</button>
+                        {%endfor%}
                     {% endif %}
-
+                    {%if book_subgenres %}
+                        {% for book_subgenre in book_subgenres %}
+                            <button type="button" class="btn rounded-pill book-subgenre-button text-white">
+                                {{book_subgenre}}</button>
+                        {%endfor%}
+                    {%endif%}
+                </div>
+                {% if book.description %}
+                <p class="py-3">
+                    {{book.description}}
+                </p>
+                {% endif %}
                 <h6 class="text-secondary">Published {{book.publication_date}}<h6>
                 <h6 class="text-secondary">Pages: {{book.num_pages}}</h6>
             </div>

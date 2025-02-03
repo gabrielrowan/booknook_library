@@ -44,6 +44,9 @@ class BookDetailView(DetailView):
         else:
             context['series_books'] = Book.objects.none()
 
+        context['book_genres'] = self.object.genre.all()
+        context['book_subgenres'] = self.object.subgenre.all()
+
         return context
 
 class AuthorDetailView(DetailView):
