@@ -4,11 +4,17 @@ from .models import Book, Author, Genre, Series, SubGenre
 from django.utils import timezone
 from .forms import BookTitleFilterForm
 from django.db.models import Q
+from django.shortcuts import redirect
 
 class BookListView(ListView):
     model = Book
     template_name = 'books.html'
     context_object_name='books'  
+
+    def get(self, request, *args, **kwargs):
+        if request.GET.get('searchQuery') == "":
+            return redirect('books')  
+        return super().get(request, *args, **kwargs)
 
     def get_queryset(self):
         books = Book.objects.all()
