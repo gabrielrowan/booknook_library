@@ -2,11 +2,11 @@
 {% block content %}
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
-        <div class="row row-cols-2">
-            <div class="book-detail-cover-img d-flex justify-content-center">
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2">
+            <div class="col book-detail-cover-img d-flex justify-content-center">
                 <img src=" {{book.cover_image.url}}" alt="{{book.title}} book cover" class="img-thumbnail resized-img">
             </div>
-            <div>
+            <div class="col py-4">
                 {% if book.series %}
                 <h4 class="fst-italic text-secondary">{{book.series}} #{{book.num_in_series}}</h4>
                 {% endif %}
@@ -26,9 +26,9 @@
     {%if series_books %}
     <div class="container px-4 px-lg-5 mt-5">      
         <h5>Also in this series:</h5>
-            <div class="d-flex books-by-author p-3 rounded">
+            <div class="d-flex books-by-author p-3 rounded row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-4">
             {% for book in series_books %}
-                <div class="card author-book mx-3" >
+                <div class="card author-book m-3" >
                     <img src="{{book.cover_image.url}}" class="card-img-top" alt="{{book.title}}">
                     <div class="card-body">
                         <p class="card-text"><a href="{{book.get_absolute_url}}" class="author-book-link">{{book.title}}</a></p>
