@@ -2,11 +2,11 @@
 {% block content %}
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
-        <div class="row row-cols-2">
-            <div class="book-detail-cover-img d-flex justify-content-center">
+        <div class="row row-cols-sm-1 row-cols-md-2">
+            <div class="col book-detail-cover-img d-flex justify-content-center mb-2">
                 <img src="{{author.photo.url}}" alt="{{author.first_name}} {{author.last_name}} photo" class="img-thumbnail resized-img">
             </div>
-            <div>
+            <div class="col py-4">
                 <h1>{{author.first_name}} {{author.last_name}}</h1>
                     {% if author.bio %}
                     <p class="py-3">
