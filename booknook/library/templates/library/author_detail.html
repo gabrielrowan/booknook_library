@@ -18,7 +18,7 @@
     </div>
     <div class="container px-4 px-lg-5 mt-5">      
         <h5>Books by {{author.first_name}} {{author.last_name}}:</h5>
-            <div class="d-flex justify-content-center books-by-author p-3 rounded row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-4">
+            <div class="d-flex books-by-author p-3 rounded row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-4">
             {% for book in authors_books %}
                 <div class="card author-book m-3" >
                     <img src="{{book.cover_image.url}}" class="card-img-top" alt="{{book.title}}">
