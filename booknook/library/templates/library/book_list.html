@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="py-5">
+<section>
     <div class="container px-4 px-lg-5 mt-5">
         <div class="d-flex justify-content-center my-3">
-            <form class="d-flex search-form" method="GET" action="{% url 'books' %}">
+            <form class="d-flex search-form p-3" method="GET" action="{% url 'books' %}">
                 {{ form.searchQuery }}
                 <button class="btn btn-dark" type="submit">Search</button>
             </form>
