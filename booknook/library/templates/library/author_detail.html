@@ -9,7 +9,7 @@
             <div class="col py-4">
                 <h1>{{author.first_name}} {{author.last_name}}</h1>
                     {% if author.bio %}
-                    <p class="py-3">
+                    <p class="py-3 fs-5">
                         {{author.bio}}
                     </p>
                     {% endif %}
@@ -23,7 +23,7 @@
                 <div class="card author-book m-3" >
                     <img src="{{book.cover_image.url}}" class="card-img-top" alt="{{book.title}}">
                     <div class="card-body">
-                        <p class="card-text"><a href="{{book.get_absolute_url}}" class="author-book-link">{{book.title}}</a></p>
+                        <h5 class="card-text"><a href="{{book.get_absolute_url}}" class="author-book-link">{{book.title}}</a></h5>
                     </div>
                 </div>
             {%endfor%}

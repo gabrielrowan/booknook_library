@@ -52,12 +52,12 @@ h5,
 h6,
 p,
 a {
-    font-family: 'ABeeZee', sans-serif !important;
+    font-family: 'Alegreya' !important;
 }
 
 
 .btn-dark {
-    font-family: 'ABeeZee', sans-serif !important;
+    font-family: 'Alegreya' !important;
 }
 
 .banner-title {
@@ -97,12 +97,15 @@ a {
 
 }
 
+.author-book img {
+    aspect-ratio: 1 / 1.5 !important;
+}
+
 .author-book-link {
     text-decoration: none !important;
     color: black !important;
 }
 
 .footer {
-    margin: 0 !important;
-    width: 100% !important;
+    font-family: sans-serif !important;
 }

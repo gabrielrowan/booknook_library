@@ -11,7 +11,7 @@
                 <h4 class="fst-italic text-secondary">{{book.series}} #{{book.num_in_series}}</h4>
                 {% endif %}
                 <h1>{{book.title}}</h1>
-                <h4>{{book.author}}</h4>
+                <h5>{{book.author}}</h5>
                 <div class="genres-subgenres my-3">
                     {%if book_genres %}
                         {% for book_genre in book_genres %}
@@ -27,7 +27,7 @@
                     {%endif%}
                 </div>
                 {% if book.description %}
-                <p class="py-3">
+                <p class="py-3 fs-5">
                     {{book.description}}
                 </p>
                 {% endif %}
@@ -44,7 +44,7 @@
                 <div class="card author-book m-3" >
                     <img src="{{book.cover_image.url}}" class="card-img-top" alt="{{book.title}}">
                     <div class="card-body">
-                        <p class="card-text"><a href="{{book.get_absolute_url}}" class="author-book-link">{{book.title}}</a></p>
+                        <h5 class="card-text"><a href="{{book.get_absolute_url}}" class="author-book-link">{{book.title}}</a></h5>
                     </div>
                 </div>
             {%endfor%}

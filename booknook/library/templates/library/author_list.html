@@ -3,7 +3,7 @@
 <div class="container px-4 px-lg-5 mt-5 text-center">
     <h1 class="display-1">Authors</h1>
 </div>
-<section class="py-5">
+<section class="py-3">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
             {% for author in authors %}
@@ -13,7 +13,7 @@
                         alt="{{author.first_name}} {{author.last_name}} photo">
                     <div class="card-body text-center">
                         <h4>{{author.first_name}} {{author.last_name}}</h4>
-                        <a href="{{ author.get_absolute_url }}" class="btn btn-secondary rounded-0 border">About</a>
+                        <a href="{{ author.get_absolute_url }}" class="btn btn-secondary rounded border">About</a>
                     </div>
                 </div>
             </div>
