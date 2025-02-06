@@ -9,8 +9,11 @@
             {% for author in authors %}
             <div class="col mb-5">
                 <div class="card author-card">
-                    <img src="{{author.photo.url}}" class="card-img-top"
-                        alt="{{author.first_name}} {{author.last_name}} photo">
+                    {%if author.photo %}
+                        <img src="{{author.photo.url}}" class="card-img-top"  alt="{{author.first_name}} {{author.last_name}} photo">
+                    {%else%}
+                        <img src="{{MEDIA_URL}}/authors/placeholder.png" class="card-img-top"  alt="{{author.first_name}} {{author.last_name}} photo">
+                    {%endif%}
                     <div class="card-body text-center">
                         <h4>{{author.first_name}} {{author.last_name}}</h4>
                         <a href="{{ author.get_absolute_url }}" class="btn btn-secondary rounded border">About</a>
