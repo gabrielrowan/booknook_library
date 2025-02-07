@@ -4,50 +4,81 @@ from library.models import Book, Author, Genre, SubGenre, Series
 class Command(BaseCommand): 
     help = 'Adds more books to the books list'
 
+    # Helper Methods
+    def get_author(self, full_name):
+        first_name, last_name = full_name.split(' ', 1)
+        return Author.objects.get(first_name=first_name, last_name=last_name)
+
+    def create_series(self, series_data, author):
+        series, created = Series.objects.get_or_create(
+            name=series_data['name'],
+            defaults={'total_books': series_data['total_books'], 'author': author}
+        )
+        return series
+
     def handle(self, *args, **options):
-                # Add Stephen Fry Books
-                fantasy = Genre.objects.get(name = 'Fantasy')
+            
+            fantasy = Genre.objects.get(name='Fantasy')
+            mythology = SubGenre.objects.get(name='Mythology')
+            space = SubGenre.objects.get(name='Space')
 
-                def get_author(author_name):
-                     return Author.objects.get(first_name=author_name)
-                
-                def get_subgenre(subgenre_name):
-                    return SubGenre.objects.get(name = subgenre_name)
-                
-                def create_series(series_name, total_books, author_fk):
-                    return Series.objects.get_or_create(name = "Stephen Fry's Great Mythology", total_books = total_books, author = author_fk)[0]
+            # Author and Book Data
+            authors_data = {
+            'Stephen Fry': {
+                'subgenre': mythology,
+                'series': {'name': "Stephen Fry's Great Mythology", 'total_books': 4},
+                'books': [
+                    {'title': 'Mythos', 'publication_date': '2017-11-02', 'num_in_series': 1, 'description': 'A modern retelling of Greek myths.'},
+                    {'title': 'Heroes', 'publication_date': '2018-11-01', 'num_in_series': 2, 'description': 'The adventures of Greek heroes.'},
+                    {'title': 'Troy', 'publication_date': '2020-10-29', 'num_in_series': 3, 'description': 'The epic tale of the Trojan War.'},
+                    {'title': 'Odyssey', 'publication_date': '2024-09-26', 'num_in_series': 4, 'description': 'Odysseus’ journey home from Troy.'},
+                ]
+            },
+            'Douglas Adams': {
+                'subgenre': space,
+                'series': {'name': "The Hitchhiker's Guide to the Galaxy", 'total_books': 4},
+                'books': [
+                    {'title': "The Hitchhiker's Guide to the Galaxy", 'publication_date': '1979-10-12', 'num_in_series': 1, 'description': 'A comedic sci-fi adventure through space.'},
+                    {'title': "The Restaurant at the End of the Universe", 'publication_date': '1980-10-12', 'num_in_series': 2, 'description': 'The crew’s dining adventures across time and space.'},
+                    {'title': "Life, the Universe and Everything", 'publication_date': '1982-10-12', 'num_in_series': 3, 'description': 'More intergalactic absurdities with Arthur Dent.'},
+                    {'title': "So Long, and Thanks for All the Fish", 'publication_date': '1984-10-12', 'num_in_series': 4, 'description': 'Arthur returns to Earth for a romantic twist.'},
+                ]
+            },
+            'Madeline Miller': {
+                'subgenre': mythology,
+                'series': None,
+                'books': [
+                    {'title': 'The Song of Achilles', 'publication_date': '2011-09-20', 'description': 'A retelling of the Iliad from Patroclus’ perspective.'},
+                    {'title': 'Circe', 'publication_date': '2018-04-10', 'description': 'The story of the witch Circe, daughter of Helios.'},
+                ]
+            },
+            'Tamsyn Muir': {
+                'subgenre': space,
+                'series': {'name': "The Locked Tomb", 'total_books': 3},
+                'books': [
+                    {'title': 'Gideon the Ninth', 'publication_date': '2019-09-10', 'num_in_series': 1, 'description': 'Lesbian necromancers explore a haunted gothic palace in space.'},
+                    {'title': 'Harrow the Ninth', 'publication_date': '2020-08-04', 'num_in_series': 2, 'description': 'The story continues with unreliable narrators and cosmic horror.'},
+                    {'title': 'Nona the Ninth', 'publication_date': '2022-09-13', 'num_in_series': 3, 'description': 'A mysterious girl with a strange past holds the key to the universe.'},
+                ]
+            }
+            }
+
+            # Processing Authors and Books
+            for author_name, data in authors_data.items():
+                author = self.get_author(author_name)
+                subgenre = data['subgenre']
+                series = self.create_series(data['series'], author) if data['series'] else None
+
+            for book_data in data['books']:
+                book, created = Book.objects.get_or_create(
+                    title=book_data['title'],
+                    publication_date=book_data.get('publication_date'),
+                    author=author,
+                    series=series,
+                    num_in_series=book_data.get('num_in_series'),
+                    description=book_data['description']
+                )
+                book.genre.add(fantasy)
+                book.subgenre.add(subgenre)
 
 
-                author = get_author('Stephen')
-                subgenre = get_subgenre('Mythology')
-                series = create_series("Stephen Fry's Great Mythology", 4, author)[0]
-
-                book1 = Book.objects.get_or_create(title='Mythos',
-                                           publication_date = '2017-11-02',
-                                           author = author,
-                                           series = series,
-                                           num_in_series = 1,
-                                           description = 'Mythos is a modern collection of Greek myths, stylishly retold by legendary writer, actor, and comedian Stephen Fry. Fry transforms the adventures of Zeus and the Olympians into emotionally resonant and deeply funny stories, without losing any of their original wonder.')
-                book2 = Book.objects.get_or_create(title='Heroes',
-                                           publication_date = '2018-11-01',
-                                           author = author,
-                                           series = series,
-                                           num_in_series = 2,
-                                           description = 'There are Heroes - and then there are Greek Heroes. Few mere mortals have ever embarked on such bold and heart-stirring adventures, overcome myriad monstrous perils, or outwitted scheming vengeful gods, quite as stylishly and triumphantly as Greek heroes.' )
-                book4 = Book.objects.get_or_create(title='Odyssey',
-                                           publication_date = '2024-09-26',
-                                           author = author,
-                                           series = series,
-                                           num_in_series = 4,
-                                           description = 'Follow Odysseus after he leaves the fallen city of Troy and takes ten long dramatic years—battling monsters, the temptations of goddesses and suffering the curse of Poseidon—to voyage home to his wife Penelope on the island of Ithaca.')
-                book3 = Book.objects.get_or_create(title='Troy',
-                                            publication_date = '2020-10-29',
-                                            author = author,
-                                            series = series,
-                                            num_in_series = 3,
-                                            description = 'The story of Troy speaks to all of us - the kidnapping of Helen, a queen celebrated for her beauty, sees the Greeks launch a thousand ships against the city of Troy, to which they will lay siege for ten whole years. It is a terrible war with casualties on all sides as well as strained relations between allies, whose consequences become tragedies.')
-                
-                all_books_by_author = Book.objects.filter(author__first_name__icontains='Stephen')
-                for book in all_books_by_author:
-                        book.genre.add(fantasy) 
-                        book.subgenre.add(subgenre)
