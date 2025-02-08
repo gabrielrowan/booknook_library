@@ -5,9 +5,9 @@
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2">
             <div class="col book-detail-cover-img d-flex justify-content-center">
                 {%if book.cover_image %}
-                    <img src="{{book.cover_image.url}}" class="card-img-top mt-3 rounded-0" alt="{{book.title}} book cover">
+                    <img src="{{book.cover_image.url}}" class="card-img-top mt-3 rounded-0 book-img" alt="{{book.title}} book cover">
                 {%else%}
-                    <img src="{{MEDIA_URL}}/authors/placeholder.png" class="card-img-top"  alt="placeholder image">
+                    <img src="{{MEDIA_URL}}/authors/placeholder.png" class="card-img-top book-img"  alt="placeholder image">
                 {%endif%}            
             </div>
             <div class="col py-4">
@@ -15,7 +15,7 @@
                 <h4 class="fst-italic text-secondary">{{book.series}} #{{book.num_in_series}}</h4>
                 {% endif %}
                 <h1>{{book.title}}</h1>
-                <h5>{{book.author}}</h5>
+                <h5><a href="{{ book.author.get_absolute_url }}" class="author-link">{{ book.author }}</a></h5>
                 <div class="genres-subgenres my-3">
                     {%if book_genres %}
                         {% for book_genre in book_genres %}
@@ -47,7 +47,7 @@
             {% for book in series_books %}
                 <div class="card author-book m-3" >
                     {%if book.cover_image %}
-                        <img src="{{book.cover_image.url}}" class="card-img-top mt-3 rounded-0" alt="{{book.title}} book cover">
+                        <img src="{{book.cover_image.url}}" class="card-img-top rounded-0" alt="{{book.title}} book cover">
                     {%else%}
                         <img src="{{MEDIA_URL}}/authors/placeholder.png" class="card-img-top"  alt="placeholder image">
                     {%endif%}      

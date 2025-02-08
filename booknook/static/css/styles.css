@@ -1,5 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Alegreya:ital,wght@0,400..900;1,400..900&family=Tangerine:wght@400;700&display=swap');
 
+
+/* resetting general styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+    font-family: 'Alegreya' !important;
+}
+
+
+.btn-dark {
+    font-family: 'Alegreya' !important;
+}
+
+/* background colour */
+.background-clr {
+    background-color: #fff5f2;
+}
+
+
+/* banner styles */
+.banner-title {
+    font-size: clamp(4rem, 15vw, 12rem) !important;
+    font-family: 'Alegreya' !important;
+    color: #fefedf !important;
+    text-shadow:
+        3px 3px 0 #000,
+        -3px 3px 0 #000,
+        -3px -3px 0 #000,
+        3px -3px 0 #000 !important;
+
+}
+
+.banner-tagline {
+    font-family: 'Tangerine' !important;
+    font-weight: 700 !important;
+    font-size: clamp(3rem, 10vw, 3.75rem)
+}
+
+.banner-img {
+    height: 500px;
+    aspect-ratio: 4 / 1;
+    object-fit: cover;
+    object-position: top;
+}
+
+/* navbar styles */
+
+.navbar-brand {
+    font-family: 'Alegreya' !important;
+    font-weight: 600;
+}
+
+/* book and author styles */
 .card {
     padding: 0 !important;
 }
@@ -22,65 +80,6 @@
 .book-subgenre-button {
     background-color: #557996 !important;
     border: none;
-}
-
-
-.banner-img {
-    height: 500px;
-    aspect-ratio: 4 / 1;
-    object-fit: cover;
-    object-position: top;
-}
-
-.custom-beige {
-    background-color: #fff5f2;
-}
-
-.custom-brown {
-    background-color: #582b39;
-}
-
-.custom-light-brown {
-    background-color: #89726d;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-a {
-    font-family: 'Alegreya' !important;
-}
-
-
-.btn-dark {
-    font-family: 'Alegreya' !important;
-}
-
-.banner-title {
-    font-size: clamp(4rem, 15vw, 12rem) !important;
-    font-family: 'Alegreya' !important;
-    color: #fefedf !important;
-    text-shadow:
-        3px 3px 0 #000,
-        -3px 3px 0 #000,
-        -3px -3px 0 #000,
-        3px -3px 0 #000 !important;
-
-}
-
-.banner-tagline {
-    font-family: 'Tangerine' !important;
-    font-weight: 700 !important;
-    font-size: clamp(3rem, 10vw, 3.75rem)
-}
-
-.navbar-brand {
-    font-family: 'Alegreya' !important;
-    font-weight: 600;
 }
 
 .resized-img {
@@ -106,6 +105,23 @@ a {
     color: black !important;
 }
 
+.book-img {
+    width: clamp(21rem, 60%, 23rem) !important;
+    aspect-ratio: 3 / 5;
+    object-fit: contain;
+}
+
+.author-link {
+    text-decoration: none !important;
+    color: #474771 !important;
+
+}
+
+.author-link:hover {
+    text-decoration: underline !important;
+}
+
+/* footer styles */
 .footer {
     font-family: sans-serif !important;
 }
