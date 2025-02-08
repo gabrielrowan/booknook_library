@@ -36,7 +36,9 @@
                 </p>
                 {% endif %}
                 <h6 class="text-secondary">Published {{book.publication_date}}<h6>
-                <h6 class="text-secondary">Pages: {{book.num_pages}}</h6>
+                {%if book.num_pages %}
+                    <h6 class="text-secondary">Pages: {{book.num_pages}}</h6>
+                {%endif%}
             </div>
         </div>
     </div>
