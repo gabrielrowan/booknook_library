@@ -17,7 +17,7 @@ Booknook shows the relationships between books, authors and books in a series. I
 
 The name 'booknook' comes from the idea of having a corner ('nook') of the internet focused on books relating to books (in particular, fantasy fiction).
 
-![bookview](https://github.com/user-attachments/assets/eb29d26d-036f-4522-8f6a-f8516271e159)
+![odyssey](https://github.com/user-attachments/assets/70f3a454-4154-4103-9801-e6019a5d3c08)
 
 ### What technologies does it use?
 
