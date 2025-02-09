@@ -39,8 +39,6 @@ and the (possibly many) genres and subgenres associated with a single book.
 
 Booknook uses bootstrap with some custom CSS for its front end. It is designed to be fully responsive for mobile, ipad and desktop screen sizes.
 
-![booknook-mobile](https://github.com/user-attachments/assets/2a30abc9-0a02-4e9d-8242-b129b16a560c)
-
 ### Future steps
 Listing authors and books is the first stage of this application. The second stage is to create the ability for a user to log into the app. 
 Next, I would like to turn this into a library application, so that a user can take out a book/ multiple books on loan, see their return data and receive a message if a book is overdue.
