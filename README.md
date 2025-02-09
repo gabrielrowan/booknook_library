@@ -21,7 +21,7 @@ The name 'booknook' comes from the idea of having a corner ('nook') of the inter
 
 ### What technologies does it use?
 
-Booknook uses Django, Bootstrap, some custom CSS and SQLLite. 
+Booknook uses Django, Bootstrap, custom CSS and SQLLite. 
 
 ### Data models & relationships
 
