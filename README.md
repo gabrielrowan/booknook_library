@@ -9,8 +9,7 @@
 
 ### What is it?
 
-Booknook shows the relationships between books, authors and books in a series. It shows other books which are part of the same series 
-and is able to link between books and their authors (and vice versa).
+Booknook shows the relationships between books, authors and books in a series. It shows books which are part of the same series and provides the ability to search by book or author.
 
 The name 'booknook' comes from the idea of having a corner ('nook') of the internet focused on books relating to books (in particular, fantasy fiction).
 
