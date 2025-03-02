@@ -1,5 +1,8 @@
 from django.db import models
 from django.urls import reverse
+from django.db.models import UniqueConstraint 
+from django.db.models.functions import Lower
+import uuid
 
 
 class Book(models.Model):
@@ -38,13 +41,22 @@ class Author(models.Model):
         return f"{self.first_name} {self.last_name}"
 
 class Genre(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,  unique=True)
 
     def __str__(self):
         return self.name
     
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                Lower('name'),
+                name='genre_name_case_insensitive_unique',
+                violation_error_message = "Genre already exists"
+            ),
+        ]
+    
 class Series(models.Model):
-    name = models.CharField(max_length=200, unique=True)  
+    name = models.CharField(max_length=200)  
      # Number of books in the series
     total_books = models.PositiveIntegerField(default=0) 
     author = models.ForeignKey('Author', on_delete=models.CASCADE, null=True, blank=True)
@@ -56,10 +68,43 @@ class Series(models.Model):
         verbose_name_plural = 'series'
     
 class SubGenre(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
     
     class Meta:
         verbose_name_plural = 'subgenres'
+
+        constraints = [
+        UniqueConstraint(
+            Lower('name'),
+            name='subgenre_name_case_insensitive_unique',
+            violation_error_message = "Subgenre already exists"
+        ),
+    ]
+    
+    class BookInstance(models.Model):
+
+        id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+        book = models.ForeignKey('Book', on_delete=models.RESTRICT, null=True)
+        due_back = models.DateField(null=True, blank=True)
+
+        LOAN_STATUS = (
+            ('o', 'On loan'),
+            ('a', 'Available'),
+            ('r', 'Reserved'),
+        )
+
+        status = models.CharField(
+            max_length=1,
+            choices=LOAN_STATUS,
+            blank=True,
+            default='a',
+        )
+
+        class Meta:
+            ordering = ['due_back']
+
+        def __str__(self):
+            return f'{self.id} ({self.book.title})'
