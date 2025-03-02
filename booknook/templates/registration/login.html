@@ -32,9 +32,14 @@
       </table>
       <button type="submit login-btn" class="btn btn-dark">Submit</button>
       <input type="hidden" name="next" value="{{ next }}">
-      <p class="mt-3">
-        <a href="{% url 'password_reset' %}" class="text-dark">Lost password?</a>
-    </p>
+      <div class=" d-flex justify-content-between">
+        <p class="mt-3">
+          <a href="{% url 'password_reset' %}" class="text-dark">Lost password?</a>
+        </p>
+        <p class="mt-3">
+          <a href="" class="text-dark">New? Sign up</a>
+        </p>
+      <div>
     </form>
 
   </div>
