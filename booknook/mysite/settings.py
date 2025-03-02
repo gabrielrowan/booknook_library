@@ -150,3 +150,5 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     }
 }
+
+LOGIN_REDIRECT_URL = '/'

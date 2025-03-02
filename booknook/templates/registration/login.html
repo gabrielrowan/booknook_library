@@ -1,4 +1,5 @@
 
+{% extends 'base.html' %}
 {% block content %}
 
   {% if form.errors %}
@@ -13,24 +14,30 @@
       <p>Please login to see this page.</p>
     {% endif %}
   {% endif %}
+<div class="d-flex justify-content-center">
+  <div class="p-4">
+    <form method="post" action="{% url 'login' %}" class="form-group">
+      {% csrf_token %}
+      <div class="login-table mb-2">
+        <div class="login-table-row mb-2">
+          {{ form.username.label_tag }}
+          {{ form.username }} 
+        </div>
+        <div class="login-table-row mb-1">
+          {{ form.password.label_tag }}
+          {{ form.password }}
+        </div>
+      </div>
+      <button type="submit login-btn" class="btn btn-secondary">Submit</button>
+      <input type="hidden" name="next" value="{{ next }}">
+      <p class="mt-3">
+        <a href="{% url 'password_reset' %}">Lost password?</a>
+    </p>
+    </form>
 
-  <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <table>
-      <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-      </tr>
-    </table>
-    <input type="submit" value="login">
-    <input type="hidden" name="next" value="{{ next }}">
-  </form>
+  </div>
+</div>
 
-  {# Assumes you set up the password_reset view in your URLconf #}
-  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
 
 {% endblock %}
