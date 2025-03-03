@@ -20,10 +20,15 @@
                 <ul class="navbar-nav">
                 {% if user.is_authenticated %}
                     <li class="nav-link text-light">Hey, {{ user.get_username }} &#128075</li>
-                    <li class="nav-link text-light"><a href="{% url 'borrowed-books' %}">My Books</a></li>
-                    <li class="nav-link text-light">Logout</li>
+                    <li class="nav-link"><a class="link-light" href="{% url 'borrowed-books' %}">My Books</a></li>
+                    <li class="nav-link">
+                        <form id="logout-form" method="post" action="{% url 'logout' %}">
+                          {% csrf_token %}
+                          <button type="submit" class="btn btn-link link-light">Logout</button>
+                        </form>
+                      </li>
                 {% else %}
-                    <li class="nav-link text-light"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+                    <li class="nav-link"><a class="link-light" href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
                 {% endif %}
                 </ul>
             </div>

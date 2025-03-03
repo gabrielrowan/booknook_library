@@ -1,6 +1,11 @@
 
 
+{% extends 'base.html' %}
 {% block content %}
-  <p>Logged out!</p>
-  <a href="{% url 'login'%}">Click here to login again.</a>
+<div class="d-flex justify-content-center m-5">
+  <div class="p-4 m-4 rounded login-form-container border border-secondary bg-light">
+  <p>You've been logged out!</p>
+  <a class="link-dark" href="{% url 'login'%}">Click here to login again.</a>
+  </div>
+</div>
 {% endblock %}
