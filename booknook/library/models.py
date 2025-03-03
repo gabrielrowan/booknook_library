@@ -3,6 +3,9 @@ from django.urls import reverse
 from django.db.models import UniqueConstraint 
 from django.db.models.functions import Lower
 import uuid
+from django.conf import settings
+from datetime import date,  timedelta
+
 
 
 class Book(models.Model):
@@ -84,27 +87,39 @@ class SubGenre(models.Model):
         ),
     ]
     
-    class BookInstance(models.Model):
+class BookInstance(models.Model):
 
-        id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-        book = models.ForeignKey('Book', on_delete=models.RESTRICT, null=True)
-        due_back = models.DateField(null=True, blank=True)
+    def get_due_date():
+        return date.today() + timedelta(days=30)
 
-        LOAN_STATUS = (
-            ('o', 'On loan'),
-            ('a', 'Available'),
-            ('r', 'Reserved'),
-        )
+    @property
+    def is_overdue(self):
+        # check if due back is empty/populated - if populated, compares with todays date
+        return bool(self.due_back and date.today() > self.due_back)
 
-        status = models.CharField(
-            max_length=1,
-            choices=LOAN_STATUS,
-            blank=True,
-            default='a',
-        )
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    book = models.ForeignKey('Book', on_delete=models.RESTRICT, null=True)
+    borrowed_date = models.DateField(default=date.today)  
+    due_back = models.DateField(default=get_due_date)  
+    borrower = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
 
-        class Meta:
-            ordering = ['due_back']
+    LOAN_STATUS = (
+        ('o', 'On loan'),
+        ('a', 'Available'),
+        ('r', 'Reserved'),
+    )
 
-        def __str__(self):
-            return f'{self.id} ({self.book.title})'
+    status = models.CharField(
+        max_length=1,
+        choices=LOAN_STATUS,
+        blank=True,
+        default='a',
+    )
+
+    class Meta:
+        ordering = ['due_back']
+
+    def __str__(self):
+        return f'{self.id} ({self.book.title})'
+    
+    

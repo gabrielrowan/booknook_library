@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center m-5">
+    <div class="p-4 m-4 rounded login-form-container border border-secondary bg-light">
+        <h1 class="my-2">Borrowed books</h1>
+
+        {% if bookinst.is_overdue %}
+            <div class="alert alert-danger" role="alert">
+                You have overdue books!
+            </div>
+        {% endif %}
+
+        {% if bookinstance_list %}
+
+        <table class="table my-5">
+            <thead>
+                <tr>
+                    <th>Book Title</th>
+                    <th>Borrowed Date</th>
+                    <th>Due Date</th>
+                    <th>Return</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bookinst in bookinstance_list %}
+                <tr>
+                    <td><a class="link-dark" href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.title }}</a></td>
+                    <td>{{bookinst.borrowed_date}}</td>
+                    <td>{{ bookinst.due_back }}</td>
+                    <td><button class="btn btn-secondary btn-sm">Return</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+
+        {% else %}
+        <p>There are no books borrowed.</p>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

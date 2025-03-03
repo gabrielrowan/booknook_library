@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Book, Author, Genre, Series, SubGenre
+from .models import Book, Author, Genre, SubGenre, BookInstance
 from django.utils import timezone
 from .forms import BookTitleFilterForm
 from django.db.models import Q
 from django.shortcuts import redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 class BookListView(ListView):
     model = Book
@@ -79,3 +81,14 @@ class AuthorDetailView(DetailView):
 
         return context
  
+
+class LoanedBooksByUserListView(LoginRequiredMixin,ListView):
+    model = BookInstance
+    template_name = 'library/bookinstance_list_borrowed_user.html'
+
+    def get_queryset(self):
+        return (
+            BookInstance.objects.filter(borrower=self.request.user)
+            .filter(status__exact='o')
+            .order_by('due_back')
+        )

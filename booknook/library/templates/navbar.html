@@ -20,7 +20,7 @@
                 <ul class="navbar-nav">
                 {% if user.is_authenticated %}
                     <li class="nav-link text-light">Hey, {{ user.get_username }} &#128075</li>
-                    <li class="nav-link text-light">My Profile</li>
+                    <li class="nav-link text-light"><a href="{% url 'borrowed-books' %}">My Books</a></li>
                     <li class="nav-link text-light">Logout</li>
                 {% else %}
                     <li class="nav-link text-light"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
