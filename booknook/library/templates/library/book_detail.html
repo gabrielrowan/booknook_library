@@ -39,6 +39,20 @@
                 {%if book.num_pages %}
                     <h6 class="text-secondary">Pages: {{book.num_pages}}</h6>
                 {%endif%}
+
+                {% if user.is_authenticated %}
+                    {% if is_available %}
+                        <form action="{% url 'borrow-book' book.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Borrow this book</button>
+                        </form>
+                    {% else %}
+                        <p class="text-warning">This book is currently unavailable.</p>
+                    {% endif %}
+                {% else %}
+                    <p class="text-danger">You need to <a href="{% url 'login' %}">log in</a> to borrow a book!</p>
+                {% endif %}
+
             </div>
         </div>
     </div>

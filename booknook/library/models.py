@@ -4,7 +4,7 @@ from django.db.models import UniqueConstraint
 from django.db.models.functions import Lower
 import uuid
 from django.conf import settings
-from datetime import date,  timedelta
+from datetime import date, timedelta
 
 
 

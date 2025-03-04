@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 from .models import Book, Author, Genre, SubGenre, BookInstance
 from django.utils import timezone
@@ -6,6 +6,8 @@ from .forms import BookTitleFilterForm
 from django.db.models import Q
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from datetime import timedelta
 
 
 class BookListView(ListView):
@@ -92,3 +94,23 @@ class LoanedBooksByUserListView(LoginRequiredMixin,ListView):
             .filter(status__exact='o')
             .order_by('due_back')
         )
+
+
+class BorrowBookView(LoginRequiredMixin, DetailView):
+    def post(self, request, book_id):
+        book = get_object_or_404(Book, id=book_id)
+        
+        # Check if there's an available copy
+        available_instance = BookInstance.objects.filter(book=book, status='a').first()
+
+        if available_instance:
+            available_instance.borrower = request.user
+            available_instance.status = 'o'  # Mark as on loan
+            available_instance.borrowed_date = timezone.now().date()
+            available_instance.due_back = timezone.now().date() + timedelta(days=30)
+            available_instance.save()
+            messages.success(request, "You have successfully borrowed this book!")
+        else:
+            messages.error(request, "Sorry, this book is currently unavailable for borrowing.")
+
+        return redirect('book-detail', pk=book.id)
