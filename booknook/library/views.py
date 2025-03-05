@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 from .models import Book, Author, Genre, SubGenre, BookInstance
+from django.views import View
 from django.utils import timezone
 from .forms import BookTitleFilterForm
 from django.db.models import Q
@@ -96,16 +97,17 @@ class LoanedBooksByUserListView(LoginRequiredMixin,ListView):
         )
 
 
-class BorrowBookView(LoginRequiredMixin, DetailView):
+class BorrowBookView(LoginRequiredMixin, View):
     def post(self, request, book_id):
+        return self.process_borrow_request(request, book_id)
+
+    def process_borrow_request(self, request, book_id):
         book = get_object_or_404(Book, id=book_id)
-        
-        # Check if there's an available copy
         available_instance = BookInstance.objects.filter(book=book, status='a').first()
 
         if available_instance:
             available_instance.borrower = request.user
-            available_instance.status = 'o'  # Mark as on loan
+            available_instance.status = 'o'  
             available_instance.borrowed_date = timezone.now().date()
             available_instance.due_back = timezone.now().date() + timedelta(days=30)
             available_instance.save()
