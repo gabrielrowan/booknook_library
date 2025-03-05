@@ -21,6 +21,7 @@
                     <th>Borrowed Date</th>
                     <th>Due Date</th>
                     <th>Return</th>
+                    <th>Renew</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +31,7 @@
                     <td>{{bookinst.borrowed_date}}</td>
                     <td>{{ bookinst.due_back }}</td>
                     <td><button class="btn btn-secondary btn-sm">Return</button></td>
+                    <td><button class="btn btn-secondary btn-sm">Renew</button></td>
                 </tr>
                 {% endfor %}
             </tbody>
