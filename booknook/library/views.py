@@ -114,7 +114,9 @@ class BorrowBookView(LoginRequiredMixin, View):
         book = get_object_or_404(Book, id=pk)
         available_instance = BookInstance.objects.filter(book=book, status='a').first()
 
-        if available_instance:
+        user_borrowed_book_count = BookInstance.objects.filter(borrower=request.user).count()
+
+        if available_instance and user_borrowed_book_count < 5:
             available_instance.borrower = request.user
             available_instance.status = 'o'  
             available_instance.borrowed_date = timezone.now().date()
