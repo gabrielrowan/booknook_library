@@ -82,6 +82,16 @@ a {
     border: none;
 }
 
+.borrow-btn-detail {
+    background-color: #2384a2 !important;
+    border-color: #2384a2 !important;
+}
+
+.borrow-btn-list {
+    background-color: #2f888e !important;
+    border-color: #2f888e !important;
+}
+
 .resized-img {
     height: 60vh !important;
     object-fit: cover !important;

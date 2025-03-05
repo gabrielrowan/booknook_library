@@ -30,29 +30,31 @@
                         {%endfor%}
                     {%endif%}
                 </div>
+                <div class="book-detail-about mb-3">
                 {% if book.description %}
-                <p class="py-3 fs-5">
-                    {{book.description}}
-                </p>
-                {% endif %}
-                <h6 class="text-secondary">Published {{book.publication_date}}<h6>
-                {%if book.num_pages %}
-                    <h6 class="text-secondary">Pages: {{book.num_pages}}</h6>
-                {%endif%}
+                    <p class="py-3 fs-5">
+                        {{book.description}}
+                    </p>
+                    {% endif %}
+                    <h6 class="text-secondary">Published {{book.publication_date}}<h6>
+                    {%if book.num_pages %}
+                        <h6 class="text-secondary">Pages: {{book.num_pages}}</h6>
+                    {%endif%}
+                </div>
 
                 {% if user.is_authenticated %}
-                    {% if is_available %}
+                    {% if is_available and not in_user_borrowed_list %}
                         <form action="{% url 'borrow-book' book.pk %}" method="post">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-primary">Borrow this book</button>
+                            <button type="submit" class="btn borrow-btn-detail text-white my-2">Borrow this book</button>
                         </form>
                     {% elif in_user_borrowed_list %}
-                        <p class="text-success">You have borrowed this book! &#9989</p>
+                        <h6 class="text-success">You have borrowed this book! &#9989</p>
                     {% else %}
-                        <p class="text-warning">This book is currently unavailable.</p>
+                        <h6 class="text-warning">This book is currently unavailable.</p>
                     {% endif %}
                 {% else %}
-                    <p class="text-danger">You need to <a href="{% url 'login' %}">log in</a> to borrow a book!</p>
+                    <h6 class="text-danger">You need to <a href="{% url 'login' %}">log in</a> to borrow a book!</h6>
                 {% endif %}
 
             </div>
