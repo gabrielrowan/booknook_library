@@ -12,6 +12,16 @@
             </div>
         {% endif %}
 
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
         {% if bookinstance_list %}
 
         <table class="table my-5">
@@ -30,7 +40,12 @@
                     <td><a class="link-dark" href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.title }}</a></td>
                     <td>{{bookinst.borrowed_date}}</td>
                     <td>{{ bookinst.due_back }}</td>
-                    <td><button class="btn btn-secondary btn-sm">Return</button></td>
+                    <td>
+                        <form action="{% url 'return-book' bookinst.book.pk %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn return-btn btn-sm text-white">Return</button>
+                        </form>
+                    </td>
                     <td><button class="btn btn-secondary btn-sm">Renew</button></td>
                 </tr>
                 {% endfor %}
@@ -38,7 +53,8 @@
           </table>
 
         {% else %}
-        <p>There are no books borrowed.</p>
+        <p class="mt-4">You don't have any borrowed books right now.</p>
+        <a class="link-dark" href="{% url 'books'%}">Click here to view books to borrow!</a>
         {% endif %}
 
     </div>

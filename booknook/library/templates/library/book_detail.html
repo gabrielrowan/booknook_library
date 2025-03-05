@@ -43,19 +43,17 @@
                 </div>
                 <div>
                     {% if user.is_authenticated %}
-                        {% if user_borrowed_book_count >= 5 %}
+                        {% if in_user_borrowed_list %}
+                            <h6 class="text-success">You have borrowed this book! &#9989;</h6>
+                        {% elif is_available and user_borrowed_book_count < 5 %}
+                            <form action="{% url 'borrow-book' book.pk %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn borrow-btn-detail text-white my-2">Borrow this book</button>
+                            </form>
+                        {% elif not in_user_borrowed_list and user_borrowed_book_count >= 5 %}
                             <h6 class="text-danger">You've already reached the 5 book limit! Return a book to borrow this one.</h6>
                         {% else %}
-                            {% if in_user_borrowed_list %}
-                                <h6 class="text-success">You have borrowed this book! &#9989;</h6>
-                            {% elif is_available %}
-                                <form action="{% url 'borrow-book' book.pk %}" method="post">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn borrow-btn-detail text-white my-2">Borrow this book</button>
-                                </form>
-                            {% else %}
-                                <h6 class="text-warning">This book is currently unavailable.</h6>
-                            {% endif %}
+                            <h6 class="text-warning">This book isn't in stock right now.</h6>
                         {% endif %}
                     {% else %}
                         <h6 class="text-danger">You need to <a href="{% url 'login' %}">log in</a> to borrow a book!</h6>

@@ -92,6 +92,11 @@ a {
     border-color: #2f888e !important;
 }
 
+.return-btn {
+    background-color: #467cae !important;
+    border-color: #467cae !important;
+}
+
 .resized-img {
     height: 60vh !important;
     object-fit: cover !important;

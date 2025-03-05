@@ -98,6 +98,21 @@ class LoanedBooksByUserListView(LoginRequiredMixin,ListView):
     model = BookInstance
     template_name = 'library/bookinstance_list_borrowed_user.html'
 
+    def post(self, request, pk):
+        return self.return_book(request, pk)
+    
+    def return_book(self, request, pk):
+        book = get_object_or_404(Book, id=pk)
+        book_inst = get_object_or_404(BookInstance, borrower=request.user, status='o', book=book)        
+        book_inst.status = 'a'
+        book_inst.borrower = None
+        book_inst.borrowed_date = None
+        book_inst.due_back = None
+        book_inst.save()
+        messages.success(request, f"Thank you for returning '{book.title}'!")
+        return redirect('borrowed-books')
+
+
     def get_queryset(self):
         return (
             BookInstance.objects.filter(borrower=self.request.user)
@@ -122,8 +137,5 @@ class BorrowBookView(LoginRequiredMixin, View):
             available_instance.borrowed_date = timezone.now().date()
             available_instance.due_back = timezone.now().date() + timedelta(days=30)
             available_instance.save()
-            messages.success(request, "You have successfully borrowed this book!")
-        else:
-            messages.error(request, "Sorry, this book is currently unavailable for borrowing.")
 
         return redirect('book-detail', pk=pk)

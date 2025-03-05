@@ -99,14 +99,13 @@ class BookInstance(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     book = models.ForeignKey('Book', on_delete=models.RESTRICT, null=True)
-    borrowed_date = models.DateField(default=date.today)  
-    due_back = models.DateField(default=get_due_date)  
+    borrowed_date = models.DateField(null=True, blank=True)  
+    due_back = models.DateField(null=True, blank=True)  
     borrower = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
 
     LOAN_STATUS = (
         ('o', 'On loan'),
         ('a', 'Available'),
-        ('r', 'Reserved'),
     )
 
     status = models.CharField(
