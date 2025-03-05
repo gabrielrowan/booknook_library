@@ -42,10 +42,12 @@
 
                 {% if user.is_authenticated %}
                     {% if is_available %}
-                        <form action="{% url 'borrow-book' book.id %}" method="post">
+                        <form action="{% url 'borrow-book' book.pk %}" method="post">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-primary">Borrow this book</button>
                         </form>
+                    {% elif in_user_borrowed_list %}
+                        <p class="text-success">You have borrowed this book! &#9989</p>
                     {% else %}
                         <p class="text-warning">This book is currently unavailable.</p>
                     {% endif %}

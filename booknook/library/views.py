@@ -58,6 +58,13 @@ class BookDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        is_available = BookInstance.objects.filter(book=self.object, status='a').exists()
+        context['is_available'] = is_available
+
+        user = self.request.user
+
+        context['in_user_borrowed_list'] = BookInstance.objects.filter(book=self.object, borrower=user, status='o').exists()
+
         other_books = Book.objects.filter(author=self.object.author).exclude(id=self.object.id)
         context['other_books_by_author'] = other_books if other_books.exists() else None
 
@@ -98,11 +105,11 @@ class LoanedBooksByUserListView(LoginRequiredMixin,ListView):
 
 
 class BorrowBookView(LoginRequiredMixin, View):
-    def post(self, request, book_id):
-        return self.process_borrow_request(request, book_id)
+    def post(self, request, pk):
+        return self.process_borrow_request(request, pk)
 
-    def process_borrow_request(self, request, book_id):
-        book = get_object_or_404(Book, id=book_id)
+    def process_borrow_request(self, request, pk):
+        book = get_object_or_404(Book, id=pk)
         available_instance = BookInstance.objects.filter(book=book, status='a').first()
 
         if available_instance:
@@ -115,4 +122,4 @@ class BorrowBookView(LoginRequiredMixin, View):
         else:
             messages.error(request, "Sorry, this book is currently unavailable for borrowing.")
 
-        return redirect('book-detail', pk=book.id)
+        return redirect('book-detail', pk=pk)
