@@ -10,12 +10,12 @@ h5,
 h6,
 p,
 a {
-    font-family: 'Alegreya' !important;
+    font-family: 'Alegreya', sans-serif !important;
 }
 
 
 .btn-dark {
-    font-family: 'Alegreya' !important;
+    font-family: 'Alegreya', sans-serif !important;
 }
 
 /* background colour */
@@ -27,7 +27,7 @@ a {
 /* banner styles */
 .banner-title {
     font-size: clamp(4rem, 15vw, 12rem) !important;
-    font-family: 'Alegreya' !important;
+    font-family: 'Alegreya', sans-serif !important;
     color: #fefedf !important;
     text-shadow:
         3px 3px 0 #000,
@@ -38,7 +38,7 @@ a {
 }
 
 .banner-tagline {
-    font-family: 'Tangerine' !important;
+    font-family: 'Tangerine', sans-serif !important;
     font-weight: 700 !important;
     font-size: clamp(3rem, 10vw, 3.75rem)
 }
@@ -53,7 +53,7 @@ a {
 /* navbar styles */
 
 .navbar-brand {
-    font-family: 'Alegreya' !important;
+    font-family: 'Alegreya', sans-serif !important;
     font-weight: 600;
 }
 
@@ -142,6 +142,7 @@ a {
 .login-link,
 .logout-link {
     text-decoration: none !important;
+    font-family: 'Alegreya', sans-serif !important;
 }
 
 
