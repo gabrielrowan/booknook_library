@@ -63,9 +63,9 @@ class BookDetailView(DetailView):
 
         user = self.request.user
 
-        context['user_borrowed_book_count'] = BookInstance.objects.filter(borrower=user).count()
-
-        context['in_user_borrowed_list'] = BookInstance.objects.filter(book=self.object, borrower=user, status='o').exists()
+        if user.is_authenticated:
+            context['user_borrowed_book_count'] = BookInstance.objects.filter(borrower=user).count()
+            context['in_user_borrowed_list'] = BookInstance.objects.filter(book=self.object, borrower=user, status='o').exists()
 
         other_books = Book.objects.filter(author=self.object.author).exclude(id=self.object.id)
         context['other_books_by_author'] = other_books if other_books.exists() else None
