@@ -15,9 +15,15 @@
         {% if messages %}
         <div class="messages">
             {% for message in messages %}
-                <div class="alert alert-success">
-                    {{ message }}
-                </div>
+                {% if "success" in message.tags %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
         {% endif %}
@@ -46,7 +52,12 @@
                             <button type="submit" class="btn return-btn btn-sm text-white">Return</button>
                         </form>
                     </td>
-                    <td><button class="btn btn-secondary btn-sm">Renew</button></td>
+                    <td>
+                        <form action="{% url 'renew-book' bookinst.book.pk %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-secondary btn-sm text-white">Renew</button>
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

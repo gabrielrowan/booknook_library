@@ -98,18 +98,35 @@ class LoanedBooksByUserListView(LoginRequiredMixin,ListView):
     model = BookInstance
     template_name = 'library/bookinstance_list_borrowed_user.html'
 
+
     def post(self, request, pk):
-        return self.return_book(request, pk)
-    
-    def return_book(self, request, pk):
         book = get_object_or_404(Book, id=pk)
-        book_inst = get_object_or_404(BookInstance, borrower=request.user, status='o', book=book)        
+        book_inst = get_object_or_404(BookInstance, borrower=request.user, status='o', book=book)  
+
+        action = request.POST.get("action")
+        if action == "return":
+            return self.return_book(request, book_inst)
+        else:
+            return self.renew_book(request, book_inst)
+        
+    
+    def return_book(self, request, book, book_inst):
         book_inst.status = 'a'
         book_inst.borrower = None
         book_inst.borrowed_date = None
         book_inst.due_back = None
         book_inst.save()
-        messages.success(request, f"Thank you for returning '{book.title}'!")
+        messages.success(request, f"Thank you for returning '{book_inst.book.title}'!")
+        return redirect('borrowed-books')
+
+    def renew_book(self, request, book_inst):
+        borrow_day_limit = 90
+        if ((book_inst.due_back -  book_inst.borrowed_date).days <= borrow_day_limit):
+            book_inst.due_back = book_inst.due_back + timedelta(days=30)
+            book_inst.save()
+            messages.success(request, f"You've renewed '{book_inst.book.title}' by 30 days!")
+        else:
+            messages.error(request, f"You can't renew '{book_inst.book.title}' because you've already borrowed it for 90 days!")
         return redirect('borrowed-books')
 
 
