@@ -145,6 +145,14 @@ a {
     font-family: 'Alegreya', sans-serif !important;
 }
 
+.login-form-container {
+    width: 24rem !important;
+}
+
+.login-form-container input[type="email"] {
+    width: 100% !important;
+}
+
 
 /* footer styles */
 .footer {
