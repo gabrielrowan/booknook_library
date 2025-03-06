@@ -137,6 +137,14 @@ a {
 }
 
 
+/* authentication styles  - ie. login, logout etc. */
+
+.login-link,
+.logout-link {
+    text-decoration: none !important;
+}
+
+
 /* footer styles */
 .footer {
     font-family: sans-serif !important;
