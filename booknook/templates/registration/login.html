@@ -4,6 +4,19 @@
 
 <div class="d-flex justify-content-center m-5">
   <div class="p-4 m-4 rounded login-form-container border border-secondary bg-light">
+    <div class="alert alert-success" role="alert">
+      <p> Psst. You can use these test login details: </p>
+        <table class=table>
+          <tr>
+              <td>Username:</td>
+              <td><span class="fw-bold">test</span></td>
+          </tr>
+          <tr>
+              <td>Password:</td>
+              <td><span class="fw-bold">secretpassword</span></td>
+          </tr>
+      </table>
+    </div>
     {% if form.errors %}
       <p>Your username and password didn't match. Please try again.</p>
     {% endif %}
@@ -26,9 +39,6 @@
       <div class=" d-flex justify-content-between">
         <p class="mt-3">
           <a href="{% url 'password_reset' %}" class="text-dark">Lost password?</a>
-        </p>
-        <p class="mt-3">
-          <a href="" class="text-dark">New? Sign up</a>
         </p>
       <div>
     </form>
