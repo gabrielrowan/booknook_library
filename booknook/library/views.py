@@ -4,11 +4,12 @@ from .models import Book, Author, Genre, SubGenre, BookInstance
 from django.views import View
 from django.utils import timezone
 from .forms import BookTitleFilterForm
-from django.db.models import Q
+from django.db.models import Q, Value, CharField
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from datetime import timedelta
+from django.db.models.functions import Concat
 
 
 class BookListView(ListView):
@@ -24,12 +25,31 @@ class BookListView(ListView):
     def get_queryset(self):
         books = Book.objects.all()
         search_query = self.request.GET.get('searchQuery')
+
         if search_query:
-            books = books.filter(
-            Q(title__icontains=search_query) | 
-            Q(author__first_name__icontains=search_query) | 
-            Q(author__last_name__icontains=search_query)
-        )
+            # First, search for books by title
+            books_matching_title = books.filter(title__icontains=search_query)
+            
+            # if there is a book matching the search term title, return it
+            if books_matching_title.exists():
+                return books_matching_title
+            
+            # next, create a virtual column for all authors' full names
+            authors = Author.objects.annotate(
+                full_name=Concat('first_name', Value(' '), 'last_name', output_field=CharField()))
+            
+            # check to see if the author's name is in the queryset of author full names
+            matching_authors = authors.filter(full_name__icontains=search_query)
+
+            if matching_authors.exists():
+                # if a matching name exists, filter books by that name
+                books_matching_author_name = books.filter(author__in=matching_authors)
+                return books_matching_author_name
+
+            # if nothing matching is found, return 
+            return books.none()  
+        
+        # if no search query is provided, return all books
         return books
 
     def get_context_data(self, **kwargs):
