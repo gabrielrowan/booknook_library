@@ -106,11 +106,13 @@ class LoanedBooksByUserListView(LoginRequiredMixin,ListView):
         action = request.POST.get("action")
         if action == "return":
             return self.return_book(request, book_inst)
-        else:
+        elif action == "renew":
             return self.renew_book(request, book_inst)
+        else:
+            print("invalid action type submitted")
         
     
-    def return_book(self, request, book, book_inst):
+    def return_book(self, request, book_inst):
         book_inst.status = 'a'
         book_inst.borrower = None
         book_inst.borrowed_date = None

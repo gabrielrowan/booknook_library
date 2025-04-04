@@ -47,14 +47,16 @@
                     <td>{{bookinst.borrowed_date}}</td>
                     <td>{{ bookinst.due_back }}</td>
                     <td>
-                        <form action="{% url 'return-book' bookinst.book.pk %}" method="post">
+                        <form action="{% url 'book-action' bookinst.book.pk %}" method="post">
                             {% csrf_token %}
+                            <input type="hidden" name="action" value="return">
                             <button type="submit" class="btn return-btn btn-sm text-white">Return</button>
                         </form>
                     </td>
                     <td>
-                        <form action="{% url 'renew-book' bookinst.book.pk %}" method="post">
+                        <form action="{% url 'book-action' bookinst.book.pk %}" method="post">
                             {% csrf_token %}
+                            <input type="hidden" name="action" value="renew">
                             <button type="submit" class="btn btn-secondary btn-sm text-white">Renew</button>
                         </form>
                     </td>
