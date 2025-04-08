@@ -82,7 +82,8 @@ a {
     border: none;
 }
 
-.borrow-btn-detail {
+.borrow-btn-detail,
+.register-button {
     background-color: #2384a2 !important;
     border-color: #2384a2 !important;
 }
@@ -151,6 +152,10 @@ a {
 
 .login-form-container input[type="email"] {
     width: 100% !important;
+}
+
+.register-container {
+    width: min(100%, 450px) !important;
 }
 
 

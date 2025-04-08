@@ -5,11 +5,11 @@
 
 {% block content %}
 <div class="d-flex justify-content-center m-5">
-    <div class="p-4 m-4 rounded login-form-container border border-secondary bg-light">
+    <div class="p-4 rounded login-form-container border border-secondary bg-light register-container">
         <form method="POST" class="form-group">
         {% csrf_token %}
         {{ form|crispy }}
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn register-button text-white my-2">Register</button>
         </form>
     </div>
 </div>
