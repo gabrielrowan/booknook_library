@@ -1,1 +1,9 @@
-<h1>You've been registered successfully!</h1>
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-center m-5">
+    <div class="p-4 m-4 rounded login-form-container border border-secondary bg-light">
+        <h5 class="text-success text-center">You've been registered successfully!</h5>
+        <a class="text-center nav-link login-link text-decoration-underline" href="{% url 'login' %}">Login here </a>
+    </div>
+</div>
+{% endblock %}
