@@ -13,12 +13,12 @@
 
 </head>
 
-<body class="background-clr">
+<body class="background-clr d-flex flex-column min-vh-100">
     <header>
         {% include 'navbar.html' %}
         {% include 'banner.html' %}
     </header>
-    <main>
+    <main class="flex-grow-1">
         {% block content %}
         {% endblock %}
     </main>
