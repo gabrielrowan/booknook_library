@@ -8,7 +8,9 @@ h3,
 h4,
 h5,
 h6,
+li,
 p,
+label,
 a {
     font-family: 'Alegreya', sans-serif !important;
 }
@@ -154,7 +156,8 @@ a {
     width: 100% !important;
 }
 
-.register-container {
+.register-container,
+.password-reset-confirm {
     width: min(100%, 450px) !important;
 }
 
