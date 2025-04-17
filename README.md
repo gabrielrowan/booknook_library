@@ -20,7 +20,7 @@ Booknook is a **Django** library web app focused on fantasy books. It uses **Boo
 
 # What's coming up in the next release?
 
-- Adding the ability to filter books by subgenre on the homepage (ie. if you're only interested in books about 'Hobbits', you would click the 'Hobbits' subgrene button to only see 'Lord of the Rings' and 'The Hobbit'
+- Adding the ability to filter books by subgenre on the homepage (ie. if you're only interested in books about 'Hobbits', you would click the 'Hobbits' subgrene button to only see 'Lord of the Rings' and 'The Hobbit')
 
 # What's on the roadmap?
 
