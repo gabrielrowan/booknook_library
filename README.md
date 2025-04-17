@@ -8,10 +8,10 @@ Booknook is a **Django** library web app focused on fantasy books
 
 ## Project features
 - Users can borrow, renew and return fantasy books
-- Author bio pages with links to books and series by the same author
 - Search bar to find books by book title or author
 - Full user authentication journey (sign up, login, log out, password reset)
 - Fully responsive **Bootstrap** frontend
+- Author bio pages with links to books and series by the same author
 
 
 ### What doees this project do?
