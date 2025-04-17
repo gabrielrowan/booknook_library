@@ -14,6 +14,10 @@ Booknook is a **Django** library web app focused on fantasy books
 - Author bio pages with links to books and series by the same author
 
 
+# Demo
+
+![Booknook video-VEED](https://github.com/user-attachments/assets/01399a1f-3e38-4857-aab6-4c412ae1cedc)
+
 ### What doees this project do?
 
 Booknook shows the relationships between books, authors and books in a series. It shows books which are part of the same series and provides the ability to search by book or author.
