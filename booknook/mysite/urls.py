@@ -9,7 +9,6 @@ urlpatterns = [
     path('', include('library.urls')), 
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/register/', views.register, name='register'),
-    path('accounts/register_sucess/', views.register_success, name='register_success'),
-    path('accounts/password_reset_form/', views.password_reset_request, name='password_reset'), 
+    path('accounts/register_sucess/', views.register_success, name='register_success')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
