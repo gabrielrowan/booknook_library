@@ -7,7 +7,7 @@ Live link to project: [https://gabrielrowan.pythonanywhere.com/](https://gabriel
 Booknook is a **Django** library web app focused on fantasy books
 
 ## Project features
-- Gives users the ability to borrow, renew and return fantasy books
+- Users can borrow, renew and return fantasy books
 - Author bio pages with links to books and series by the same author
 - Search bar to find books by book title or author
 - Full user authentication journey (sign up, login, log out, password reset)
