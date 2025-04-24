@@ -17,6 +17,16 @@ Booknook is a **Django** library web app focused on fantasy books. It uses **Boo
 - Full user authentication journey (sign up, login, log out, password reset)
 - Author bio pages with links to books and series by the same author
 
+# What does borrowing look like?
+
+When a book has successfully been renewed:
+
+![book_successfully_renewed](https://github.com/user-attachments/assets/f2bca456-2508-4ae2-a091-20c813cc477c)
+
+Booknook comes with built-in library validation rules (what's a library without a few rules? :smiley:) such as only being able to renw books for up to 90 days after its initial borrow date.
+
+![book_over_renew_limit](https://github.com/user-attachments/assets/9be71c36-96f2-4bed-b282-3a4c32ff1dfd)
+
 
 ## What's coming up in the next release?
 
