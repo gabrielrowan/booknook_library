@@ -13,9 +13,11 @@
             <div class="d-flex justify-content-center mb-5 mt-3">
                 {% for subgenre in subgenres %}
                     {% cycle '#2f888e' '#2384a2' '#467cae' '#746fab' '#996097' '#b05475' as bg_colours silent  %}
-                    <button type="button" class="btn text-white rounded m-1" style="background-color: {{ bg_colours }};">
-                        {{ subgenre }}
-                    </button>
+                    <a href="?searchQuery={{ request.GET.searchQuery|urlencode }}&subgenre={{ subgenre.name|urlencode }}"
+                        class="btn text-white rounded m-1"
+                        style="background-color: {{ bg_colours }};">
+                        {{ subgenre.name }}
+                    </a>
                 {% endfor %}
             </div>
         <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
