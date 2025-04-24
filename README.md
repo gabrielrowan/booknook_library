@@ -2,10 +2,17 @@
 
 Live link to project: [https://gabrielrowan.pythonanywhere.com/](https://gabrielrowan.pythonanywhere.com/)
 
-
 ## Summary
 
 Booknook is a **Django** library web app focused on fantasy books. It uses **Bootstrap** with **custom CSS** for a responsive front-end.
+
+## Contents
+- Demo
+- Project features
+- What does borrowing look like?
+- Aesthetic book & author pages
+- What was in the latest release?
+- What's next on the roadmap?
 
 ## Demo
 
@@ -33,7 +40,7 @@ Booknook provides aesthetic web pages where users can:
 - See what number the book is in a series (for example, Cursebound is the 2nd book of The Faebound Trilogy)
 - View a book's genre and any associated subgenres
 - Read the book's blurb
-- View its publication data and number of pages
+- View its publication date and number of pages
 - Virtually borrow the book!
 
 ![borrow-book-cursebound](https://github.com/user-attachments/assets/72b1484c-2801-4178-a641-fa5cc2d5b639)
