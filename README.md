@@ -28,11 +28,14 @@ Booknook comes with built-in library validation rules (what's a library without 
 ![book_over_renew_limit](https://github.com/user-attachments/assets/9be71c36-96f2-4bed-b282-3a4c32ff1dfd)
 
 
-## What's coming up in the next release?
+## What was in the latest release? :rocket:
 
-- Adding the ability to filter books by subgenre on the homepage (ie. if you're only interested in books about 'Hobbits', you would click the 'Hobbits' subgrene button to only see 'Lord of the Rings' and 'The Hobbit')
+- Booknook now comes with the option to filter the book list by subgenre, so if you only want to borrow books relating to Hobbits/ Witches/ Space or Mythology, you can do!
 
-## What's on the roadmap?
+![filtering by space](https://github.com/user-attachments/assets/0e976951-b942-4722-8501-2a7474098076)
+
+
+## What's next on the roadmap?
 
 - Giving users the ability to **add comments** and **rate** books
 - Giving each book a rating based on user ratings
