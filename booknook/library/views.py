@@ -18,13 +18,14 @@ class BookListView(ListView):
     context_object_name='books'  
 
     def get(self, request, *args, **kwargs):
-        if request.GET.get('searchQuery') == "":
+        if request.GET.get('searchQuery') == "" and request.GET.get('subgenre') == "":
             return redirect('books')  
         return super().get(request, *args, **kwargs)
 
     def get_queryset(self):
         books = Book.objects.all()
         search_query = self.request.GET.get('searchQuery')
+        subgenre_query = self.request.GET.get('subgenre')
 
         if search_query:
             # First, search for books by title
@@ -49,6 +50,10 @@ class BookListView(ListView):
             # if nothing matching is found, return 
             return books.none()  
         
+        
+        if subgenre_query:
+            books = books.filter(subgenre__name__iexact=subgenre_query)
+
         # if no search query is provided, return all books
         return books
 

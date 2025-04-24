@@ -2,14 +2,26 @@
 {% block content %}
 <section>
     <div class="container px-4 px-lg-5 mt-5">
-        <div class="d-flex justify-content-center my-3">
-            <form class="d-flex search-form p-3" method="GET" action="{% url 'books' %}">
-                {{ form.searchQuery }}
-                <button class="btn btn-dark" type="submit">Search</button>
-            </form>
-        </div>
+            <div class="d-flex justify-content-center my-3">
+                <div class="search-container">
+                    <form class="d-flex search-form p-3" method="GET" action="{% url 'books' %}">
+                        {{ form.searchQuery }}
+                        <button class="btn btn-dark" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mb-5 mt-3">
+                {% for subgenre in subgenres %}
+                    {% cycle '#2f888e' '#2384a2' '#467cae' '#746fab' '#996097' '#b05475' as bg_colours silent  %}
+                    <a href="?subgenre={{ subgenre.name|urlencode }}"
+                        class="btn text-white rounded m-1 {% if request.GET.subgenre == subgenre.name %}border border border-dark border-2{% endif %}"
+                        style="background-color: {{ bg_colours }};">
+                        {{ subgenre.name }}
+                    </a>
+                {% endfor %}
+            </div>
         <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
-            {% for book in books|dictsort:"title" %}
+            {% for book in books|dictsort:"publication_date" %}
             <div class="col mb-5">
                 <div class="card h-100 rounded-0 book-card">
                     {%if book.cover_image %}
