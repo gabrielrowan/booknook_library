@@ -14,7 +14,7 @@
                 {% for subgenre in subgenres %}
                     {% cycle '#2f888e' '#2384a2' '#467cae' '#746fab' '#996097' '#b05475' as bg_colours silent  %}
                     <a href="?searchQuery={{ request.GET.searchQuery|urlencode }}&subgenre={{ subgenre.name|urlencode }}"
-                        class="btn text-white rounded m-1"
+                        class="btn text-white rounded m-1 {% if request.GET.subgenre == subgenre.name %}border border border-dark border-2{% endif %}"
                         style="background-color: {{ bg_colours }};">
                         {{ subgenre.name }}
                     </a>
