@@ -17,7 +17,7 @@ Booknook is a **Django** library web app focused on fantasy books. It uses **Boo
 - Full user authentication journey (sign up, login, log out, password reset)
 - Author bio pages with links to books and series by the same author
 
-# What does borrowing look like?
+## What does borrowing look like?
 
 When a book has successfully been renewed:
 
