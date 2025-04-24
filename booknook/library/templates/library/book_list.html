@@ -21,7 +21,7 @@
                 {% endfor %}
             </div>
         <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
-            {% for book in books|dictsort:"title" %}
+            {% for book in books|dictsort:"publication_date" %}
             <div class="col mb-5">
                 <div class="card h-100 rounded-0 book-card">
                     {%if book.cover_image %}
