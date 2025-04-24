@@ -27,6 +27,17 @@ Booknook comes with built-in library validation rules (what's a library without 
 
 ![book_over_renew_limit](https://github.com/user-attachments/assets/9be71c36-96f2-4bed-b282-3a4c32ff1dfd)
 
+## Aesthetic Book & Author Pages
+
+Booknook provides aesthetic web pages where users can:
+- See what number the book is in a series (if it is in a series)
+- View a book's genre and any associated subgenres
+- Read the book's blurb
+- View its publication data and number of pages
+- Virtually borrow the book!
+
+![borrow-book-cursebound](https://github.com/user-attachments/assets/72b1484c-2801-4178-a641-fa5cc2d5b639)
+
 
 ## What was in the latest release? :rocket:
 
