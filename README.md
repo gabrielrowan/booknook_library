@@ -30,7 +30,7 @@ Booknook comes with built-in library validation rules (what's a library without 
 ## Aesthetic Book & Author Pages
 
 Booknook provides aesthetic web pages where users can:
-- See what number the book is in a series (if it is in a series)
+- See what number the book is in a series (for example, Cursebound is the 2nd book of The Faebound Trilogy)
 - View a book's genre and any associated subgenres
 - Read the book's blurb
 - View its publication data and number of pages
