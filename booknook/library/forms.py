@@ -8,12 +8,7 @@ class BookTitleFilterForm(forms.Form):
                                                                 'class': 'form-control mx-2'}))
     
 class RateAndReviewForm(forms.Form):
-    rating = forms.IntegerField(
-        min_value=0,
-        max_value=5,
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Rate the book from 0 to 5.'}),
-    )
-    
+    rating = forms.IntegerField(widget=forms.HiddenInput())
     review = forms.CharField(
         widget=forms.Textarea(attrs={
             'rows': 5,

@@ -67,6 +67,14 @@
         <h3>Rate and Review this Book</h3>
         <form method="post">
             {% csrf_token %}
+            <div class="star-rating">
+                <label for="star-1" class="star">&#9734;</label>
+                <label for="star-2" class="star">&#9734;</label>
+                <label for="star-3" class="star">&#9734;</label>
+                <label for="star-4" class="star">&#9734;</label>
+                <label for="star-5" class="star">&#9734;</label>
+            </div>
+            <input type="hidden" name="rating" id="rating" value="0" />
             {{ rate_review_form.as_p }}
             <button type="submit" class="btn rate-review-button text-white my-2">Submit</button>
         </form>

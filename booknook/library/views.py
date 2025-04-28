@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
-from .models import Book, Author, Genre, SubGenre, BookInstance
+from .models import Book, Author, Genre, SubGenre, BookInstance, Review
 from django.views import View
 from django.utils import timezone
 from .forms import BookTitleFilterForm, RateAndReviewForm
@@ -85,6 +85,10 @@ class BookDetailView(DetailView):
 
         is_available = BookInstance.objects.filter(book=self.object, status='a').exists()
         context['is_available'] = is_available
+        context['book_genres'] = self.object.genre.all()
+        context['book_subgenres'] = self.object.subgenre.all()
+        context['rate_review_form'] = RateAndReviewForm()
+
 
         user = self.request.user
 
@@ -104,12 +108,26 @@ class BookDetailView(DetailView):
         else:
             context['series_books'] = Book.objects.none()
 
-        context['book_genres'] = self.object.genre.all()
-        context['book_subgenres'] = self.object.subgenre.all()
-        context['rate_review_form'] = RateAndReviewForm()
-
-
         return context
+
+    def post(self, request, *args, **kwargs):
+        form = RateAndReviewForm(request.POST)
+        book = self.get_object()
+        user = self.request.user
+
+        if form.is_valid():
+            Review.objects.create(
+                book=book,
+                user=user,
+                rating=form.cleaned_data['rating'],
+                review_text=form.cleaned_data['review']
+            )
+
+            return redirect('book-detail', pk=book.pk)
+
+        context = self.get_context_data(**kwargs)
+        context['rate_review_form'] = form  
+        return self.render_to_response(context)
 
 class AuthorDetailView(DetailView):
     model = Author

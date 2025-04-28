@@ -142,6 +142,19 @@ a {
     text-decoration: underline !important;
 }
 
+/* ratings and review styles */
+
+.star {
+    font-size: 2rem;
+    cursor: pointer;
+    color: #d3d3d3;
+}
+
+.star.selected,
+.star:hover {
+    color: black;
+}
+
 
 /* authentication styles  - ie. login, logout etc. */
 
