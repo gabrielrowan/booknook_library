@@ -121,4 +121,13 @@ class BookInstance(models.Model):
     def __str__(self):
         return f'{self.id} ({self.book.title})'
     
-    
+class Review(models.Model):
+    book = models.ForeignKey('Book', on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    review_text = models.TextField(blank=True)
+    rating = models.PositiveSmallIntegerField(choices=[(i, i) for i in range(6)], null=True, blank=True)  
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('book', 'user')
