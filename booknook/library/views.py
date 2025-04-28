@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView
 from .models import Book, Author, Genre, SubGenre, BookInstance
 from django.views import View
 from django.utils import timezone
-from .forms import BookTitleFilterForm
+from .forms import BookTitleFilterForm, RateAndReviewForm
 from django.db.models import Q, Value, CharField
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -106,6 +106,8 @@ class BookDetailView(DetailView):
 
         context['book_genres'] = self.object.genre.all()
         context['book_subgenres'] = self.object.subgenre.all()
+        context['rate_review_form'] = RateAndReviewForm()
+
 
         return context
 

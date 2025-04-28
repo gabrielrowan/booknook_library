@@ -1,0 +1,35 @@
+{%if series_books %}
+<div class="container px-4 px-lg-5 mt-5">      
+    <h5>Also in this series:</h5>
+        <div class="d-flex books-by-author p-3 rounded row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-4">
+        {% for book in series_books %}
+            <div class="card author-book m-3" >
+                {%if book.cover_image %}
+                    <img src="{{book.cover_image.url}}" class="card-img-top rounded-0" alt="{{book.title}} book cover">
+                {%else%}
+                    <img src="{{MEDIA_URL}}/authors/placeholder.png" class="card-img-top"  alt="placeholder image">
+                {%endif%}      
+                <div class="card-body">
+                    <h5 class="card-text"><a href="{{book.get_absolute_url}}" class="author-book-link">{{book.title}}</a></h5>
+                </div>
+            </div>
+        {%endfor%}
+        </div>
+</div>
+{% else %}
+   {% if other_books_by_author %}
+    <div class="container px-4 px-lg-5 mt-5">      
+        <h5>Also by {{book.author}}:</h5>
+            <div class="d-flex books-by-author p-3 rounded">
+            {% for book in other_books_by_author %}
+                <div class="card author-book mx-3" >
+                    <img src="{{book.cover_image.url}}" class="card-img-top" alt="{{book.title}}">
+                    <div class="card-body">
+                        <p class="card-text"><a href="{{book.get_absolute_url}}" class="author-book-link">{{book.title}}</a></p>
+                    </div>
+                </div>
+            {%endfor%}
+            </div>
+    </div>
+    {% endif %}
+{% endif %}
