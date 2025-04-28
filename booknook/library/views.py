@@ -108,6 +108,8 @@ class BookDetailView(DetailView):
         context['book_genres'] = self.object.genre.all()
         context['book_subgenres'] = self.object.subgenre.all()
         context['rate_review_form'] = RateAndReviewForm()
+        context['reviews'] = Review.objects.filter(book=self.object).order_by('-created_at')
+        context['star_range'] = range(1, 6)
 
 
         user = self.request.user

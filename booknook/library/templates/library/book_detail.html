@@ -64,7 +64,7 @@
     </div>
 
     <div class="container px-4 px-lg-5 mt-5" id="rate-review">
-        <h3>Rate and Review this Book</h3>
+        <h3>What did you think of {{book.title}}?</h3>
         <form method="post">
             {% csrf_token %}
             <div class="star-rating">
@@ -77,6 +77,31 @@
             {{ rate_review_form.as_p }}
             <button type="submit" class="btn rate-review-button text-white my-2">Submit</button>
         </form>
+    </div>
+    <div class="container px-4 px-lg-5 mt-5">
+        <h3>Ratings & Reviews</h3>
+        {% if reviews %}
+            {% for review in reviews %}
+            <div class="review mb-4 p-3 border rounded">
+                <div class="d-flex justify-content-between align-items-center">
+                    <strong>{{ review.user.username }}</strong>
+                    <small class="text-muted">{{ review.created_at|date:"F j, Y" }}</small>
+                </div>
+                <div class="rating text-warning mb-2">
+                    {% for i in star_range %}
+                        {% if i <= review.rating %}
+                            &#9733;  {# filled star #}
+                        {% else %}
+                            &#9734;  {# empty star #}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <p>{{ review.review_text }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No reviews yet. Be the first to leave one!</p>
+        {% endif %}
     </div>
 
 </section>

@@ -150,11 +150,9 @@ a {
     color: #d3d3d3;
 }
 
-.star.selected,
-.star:hover {
-    color: black;
+.review {
+    background-color: white;
 }
-
 
 /* authentication styles  - ie. login, logout etc. */
 
