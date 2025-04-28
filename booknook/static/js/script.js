@@ -16,6 +16,6 @@ document.querySelectorAll('.star').forEach((star, idx) =>
             document.querySelectorAll('.star')[i].classList.add('selected');
         }
 
-        document.querySelector('#rating').value = idx + 1;
+        document.querySelector('input[name="rating"]').value = idx + 1;
     });
 });

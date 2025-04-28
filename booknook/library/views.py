@@ -80,6 +80,26 @@ def index_view(request):
 class BookDetailView(DetailView):
     model = Book
 
+    def post(self, request, *args, **kwargs):
+        form = RateAndReviewForm(request.POST)
+        book = self.get_object()
+        user = self.request.user
+
+        if form.is_valid():
+            Review.objects.create(
+                book=book,
+                user=user,
+                rating=form.cleaned_data['rating'],
+                review_text=form.cleaned_data['review']
+            )
+
+            return redirect('book-detail', pk=book.pk)
+
+        self.object = book
+        context = self.get_context_data(**kwargs)
+        context['rate_review_form'] = form  
+        return self.render_to_response(context)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -110,24 +130,7 @@ class BookDetailView(DetailView):
 
         return context
 
-    def post(self, request, *args, **kwargs):
-        form = RateAndReviewForm(request.POST)
-        book = self.get_object()
-        user = self.request.user
-
-        if form.is_valid():
-            Review.objects.create(
-                book=book,
-                user=user,
-                rating=form.cleaned_data['rating'],
-                review_text=form.cleaned_data['review']
-            )
-
-            return redirect('book-detail', pk=book.pk)
-
-        context = self.get_context_data(**kwargs)
-        context['rate_review_form'] = form  
-        return self.render_to_response(context)
+   
 
 class AuthorDetailView(DetailView):
     model = Author
