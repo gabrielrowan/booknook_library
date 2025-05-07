@@ -128,6 +128,7 @@ class Review(models.Model):
     rating = models.PositiveSmallIntegerField(choices=[(i, i) for i in range(6)], null=True, blank=True)  
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    '''
     class Meta:
         unique_together = ('book', 'user')
+    '''

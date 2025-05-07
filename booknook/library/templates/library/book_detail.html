@@ -16,6 +16,15 @@
                 {% endif %}
                 <h1>{{book.title}}</h1>
                 <h5><a href="{{ book.author.get_absolute_url }}" class="author-link">{{ book.author }}</a></h5>
+                <div class="rating mb-2">
+                    {% for i in star_range %}
+                        {% if i <= average_rating %}
+                            <span class="star-rating-average">&#9733;</span>  {# filled star #}
+                        {% else %}
+                            <span class="star-rating-average">&#9734;</span>  {# empty star #}
+                        {% endif %}
+                    {% endfor %}
+                </div>
                 <div class="genres-subgenres my-3">
                     {%if book_genres %}
                         {% for book_genre in book_genres %}
@@ -90,9 +99,9 @@
                 <div class="rating mb-2">
                     {% for i in star_range %}
                         {% if i <= review.rating %}
-                            &#9733;  {# filled star #}
+                            <span>&#9733;</span> {# filled star #}
                         {% else %}
-                            &#9734;  {# empty star #}
+                            <span>&#9734;</span>  {# empty star #}
                         {% endif %}
                     {% endfor %}
                 </div>

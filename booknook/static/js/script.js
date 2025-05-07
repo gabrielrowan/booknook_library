@@ -32,7 +32,7 @@ const resetStars = () =>
     stars.forEach(star =>
     {
         star.innerHTML = '&#9734;'; // empty star
-        star.classList.remove('selected');
+        star.classList.remove('star-selected');
     });
 }
 
@@ -41,6 +41,6 @@ const fillStars = (idx) =>
     for (let i = 0; i <= idx; i++)
     {
         stars[i].innerHTML = '&#9733;'; // filled star
-        stars[i].classList.add('selected');
+        stars[i].classList.add('star-selected');
     }
 }

@@ -4,7 +4,7 @@ from .models import Book, Author, Genre, SubGenre, BookInstance, Review
 from django.views import View
 from django.utils import timezone
 from .forms import BookTitleFilterForm, RateAndReviewForm
-from django.db.models import Q, Value, CharField
+from django.db.models import Q, Value, CharField, Avg
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -110,8 +110,7 @@ class BookDetailView(DetailView):
         context['rate_review_form'] = RateAndReviewForm()
         context['reviews'] = Review.objects.filter(book=self.object).order_by('-created_at')
         context['star_range'] = range(1, 6)
-
-
+        context['average_rating'] = Review.objects.filter(book=self.object).aggregate(Avg('rating'))['rating__avg'] or 0
         user = self.request.user
 
         if user.is_authenticated:

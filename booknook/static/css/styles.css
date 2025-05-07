@@ -154,8 +154,12 @@ a {
     background-color: white;
 }
 
-.selected {
+.star-selected {
     color: black;
+}
+
+.star-rating-average {
+    font-size: 1.5rem;
 }
 
 /* authentication styles  - ie. login, logout etc. */
