@@ -84,17 +84,18 @@ class BookDetailView(DetailView):
         form = RateAndReviewForm(request.POST)
         book = self.get_object()
         user = self.request.user
+        if user.is_authenticated:
+            if form.is_valid():
+                Review.objects.create(
+                    book=book,
+                    user=user,
+                    rating=form.cleaned_data['rating'],
+                    review_text=form.cleaned_data['review']
+                )
 
-        if form.is_valid():
-            Review.objects.create(
-                book=book,
-                user=user,
-                rating=form.cleaned_data['rating'],
-                review_text=form.cleaned_data['review']
-            )
-
-            return redirect('book-detail', pk=book.pk)
-
+                return redirect('book-detail', pk=book.pk)
+        else:
+            return redirect('login')
         self.object = book
         context = self.get_context_data(**kwargs)
         context['rate_review_form'] = form  
