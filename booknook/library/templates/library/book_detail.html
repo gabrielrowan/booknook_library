@@ -87,7 +87,7 @@
                     <strong>{{ review.user.username }}</strong>
                     <small class="text-muted">{{ review.created_at|date:"F j, Y" }}</small>
                 </div>
-                <div class="rating text-warning mb-2">
+                <div class="rating mb-2">
                     {% for i in star_range %}
                         {% if i <= review.rating %}
                             &#9733;  {# filled star #}

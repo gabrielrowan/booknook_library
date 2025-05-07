@@ -154,6 +154,10 @@ a {
     background-color: white;
 }
 
+.selected {
+    color: black;
+}
+
 /* authentication styles  - ie. login, logout etc. */
 
 .login-link,
