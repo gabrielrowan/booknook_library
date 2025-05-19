@@ -12,14 +12,11 @@ For the front-end styling, the app uses **Bootstrap** with custom **CSS** and **
 ## Contents
 - Demo
 - Project features
+- Ratings & Reviews
 - What does borrowing look like?
 - Aesthetic book & author pages
-- What was in the latest release?
-- What's next on the roadmap?
 
-## Demo
 
-![Booknook video-VEED](https://github.com/user-attachments/assets/01399a1f-3e38-4857-aab6-4c412ae1cedc)
 
 ## Project features
 - Users can borrow, renew and return fantasy books
