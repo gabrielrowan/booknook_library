@@ -90,6 +90,30 @@ After the API call returned the data, I saved it to a `.csv` file. This involved
 
 Last, I created a custom Django command called 'add_reviews' which reads the reviews from the `.csv` file and saves them to the database, so that they show up on the website.
 
+### The Results
+
+#### Jayden Review
+
+![Jayden Review - Hitch Hikers Guide to the Galaxy](https://github.com/user-attachments/assets/5a639e6a-11b7-450c-a4e3-5d62f0e4f6b1)
+
+#### Zoe Review
+
+![Zoe Review Circe](https://github.com/user-attachments/assets/27ab19bd-5cc7-4ff9-aa5c-fbcd3e9c03eb)
+
+#### Jack Review
+
+![Jack Review A Day of Fallen Night](https://github.com/user-attachments/assets/20c0b64b-6d3a-4410-9788-20aab340b9c8)
+
+#### Monica Review
+
+![Monica Review](https://github.com/user-attachments/assets/92760fe2-b19e-40de-a368-3f7c0c1f5f3a)
+
+### Review Overview
+
+It took 5 different iterations of changing the prompt to get a result I was happy with - on the whole, I found a simple prompt asking for a short review produced the best results. 
+I think Monica and Zoe's voices could have been more distinctive (this is likely down to their character traits not being different enough) but I'm happy that I was able
+to ensure that every book on the web app has a collection of reviews and ratings from different (AI) perspectives.
+
 
 ## What does borrowing look like?
 
