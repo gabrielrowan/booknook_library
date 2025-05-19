@@ -5,7 +5,7 @@ Live link to project: [https://gabrielrowan.pythonanywhere.com/](https://gabriel
 ## Summary
 
 Booknook is a **Django** library web app focused on fantasy books. 
-It uses the **OpenAI REST API** with a model from **Nebius AI** to generate the reviews and ratings based on 4 pre-defined user personalities.
+It uses the **OpenAI REST API** with a model from **Nebius** to generate the reviews and ratings based on 4 pre-defined user personalities.
 For the front-end styling, the app uses Bootstrap with custom CSS and JavaScript for a responsive, dynamic front-end.
 
 
