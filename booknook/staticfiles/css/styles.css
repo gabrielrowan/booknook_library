@@ -87,7 +87,8 @@ a {
 }
 
 .borrow-btn-detail,
-.register-button {
+.register-button,
+.rate-review-button {
     background-color: #2384a2 !important;
     border-color: #2384a2 !important;
 }
@@ -109,6 +110,10 @@ a {
 
 .books-by-author {
     background-color: #c6bdba !important;
+}
+
+.subgenre-container {
+    flex-wrap: wrap !important;
 }
 
 .author-book {
@@ -141,6 +146,25 @@ a {
     text-decoration: underline !important;
 }
 
+/* ratings and review styles */
+
+.star {
+    font-size: 2rem;
+    cursor: pointer;
+    color: #d3d3d3;
+}
+
+.review {
+    background-color: white;
+}
+
+.star-selected {
+    color: black;
+}
+
+.star-rating-average {
+    font-size: 1.5rem;
+}
 
 /* authentication styles  - ie. login, logout etc. */
 

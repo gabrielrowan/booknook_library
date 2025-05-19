@@ -10,7 +10,7 @@
                     </form>
                 </div>
             </div>
-            <div class="d-flex justify-content-center mb-5 mt-3">
+            <div class="d-flex justify-content-center mb-5 mt-3 subgenre-container">
                 {% for subgenre in subgenres %}
                     {% cycle '#2f888e' '#2384a2' '#467cae' '#746fab' '#996097' '#b05475' as bg_colours silent  %}
                     <a href="?subgenre={{ subgenre.name|urlencode }}#search"
