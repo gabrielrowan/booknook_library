@@ -13,7 +13,7 @@ For the front-end styling, the app uses **Bootstrap** with custom **CSS** and **
 - Demo
 - Project features
 - Ratings & Reviews
-- What does borrowing look like?
+- What does borrowing look like? (with demo)
 - Aesthetic book & author pages
 
 
