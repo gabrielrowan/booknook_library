@@ -40,9 +40,9 @@ These characters were:
 ### Defining classes
 
 I used OOP to define 3 different classes for the reviews:
-1) LLMClient - this class contains the config for making the API call, such as the api key and base url and the method for calling the API
-2) LLMPromptGenerator - this class dynamically changes the values of the prompt depending on the character, book and author specified
-3) LLMResponseProcessor - this class reads in the API response, sepearing the review text from the rating score so they can be stored separately
+1) **LLMClient** - this class contains the config for making the API call, such as the api key and base url and the method for calling the API
+2) **LLMPromptGenerator** - this class dynamically changes the values of the prompt depending on the character, book and author specified
+3) **LLMResponseProcessor** - this class reads in the API response, separating the review text from the rating score so they can be stored separately
 
 
 ### Creating the prompt
