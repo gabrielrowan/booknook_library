@@ -117,6 +117,12 @@ to ensure that every book on the web app has a collection of reviews and ratings
 
 ## What does borrowing look like?
 
+### Demo
+
+
+https://github.com/user-attachments/assets/71a47281-f8cd-4187-8db7-e941a34902b5
+
+
 When a book has successfully been renewed:
 
 ![book_successfully_renewed](https://github.com/user-attachments/assets/f2bca456-2508-4ae2-a091-20c813cc477c)
