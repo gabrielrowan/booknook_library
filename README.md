@@ -24,7 +24,6 @@ For the front-end styling, the app uses **Bootstrap** with custom **CSS** and **
 - Full user authentication journey (sign up, login, log out, password reset)
 - Ability to filter by subgenre (aka Hobbits/ Witches/ Space/ Mythology and more)
 - Ability to rate and review a book
-- Ratings and reviews generated using the OpenAI REST API
 
 ## Ratings and Reviews
 
